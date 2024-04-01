@@ -6,7 +6,7 @@ const {userSignUp, UserLogin, UserUpdate} = require("../Controllers/authControll
 const router = express.Router();
 
 router.post('/signup', userSignUp);
-router.get('/login', UserLogin);
+router.post('/login', UserLogin);
 router.patch('/:id', UserUpdate);
 
 
