@@ -103,5 +103,72 @@ const UserUpdate = async (req, res) => {
 };
 
 
-module.exports = {userSignUp, UserLogin,UserUpdate};
+// get details of a paticular user 
+// const UserDetails = async (req, res) => {
+//     const { id } = req.params;
+
+//     try {
+//         // Find the user by ID
+//         const user = await User.findById(id);
+
+//         // Check if user exists
+//         if (!user) {
+//             return res.status(404).json({ error: "User not found" });
+//         }
+
+//         // User found, return user details
+//         res.status(200).json(user);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "Internal Server Error" });
+//     }
+// };
+
+// const UserDetails = async (req, res) => {
+//     const { email } = req.params;
+
+//     try {
+//         // Convert the id to ObjectId
+//         const ObjectId = require('mongoose').Types.ObjectId;
+//         const userId = new ObjectId(id);
+
+//         // Find the user by ID
+//         const user = await User.findById(userId);
+
+//         // Check if user exists
+//         if (!user) {
+//             return res.status(404).json({ error: "User not found" });
+//         }
+
+//         // User found, return user details
+//         res.status(200).json(user);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "Internal Server Error" });
+//     }
+// };
+
+const UserDetails = async (req, res) => {
+    const { email } = req.params;
+
+    try {
+        // Find the user by email
+        const user = await User.findOne({ email });
+
+        // Check if user exists
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        // User found, return user details
+        res.status(200).json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+
+
+module.exports = {userSignUp, UserLogin,UserUpdate, UserDetails};
 

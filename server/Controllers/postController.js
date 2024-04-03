@@ -5,6 +5,8 @@ const User = require("../models/users");
 const create_post = async(req, res) =>{
     const {title, article, tags} = req.body;
     const userId = req.params.id; 
+    console.log(req.params.id);
+    console.log(req.body);
     // const username = req.body.username; 
     try{
         const postAdded = await Post.create({
@@ -20,6 +22,8 @@ const create_post = async(req, res) =>{
         res.status(400).json({error:error.message});
     }   
 }
+
+
 
 
 // // get all the posts
@@ -49,7 +53,7 @@ const get_post_by_id = async (req, res) => {
 const update_post = async (req, res) => {
     const { id } = req.params;
     console.log(id);
-    const { userId, username, title, article, tags } = req.body[0];
+    const { userId, username, title, article, tags } = req.body;
     console.log(req.body);
 
     try {

@@ -7,7 +7,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const navigate = useNavigate(); // Get access to the history object
+    const navigate = useNavigate(); 
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -32,7 +32,7 @@ const Login = () => {
                 setIsLoggedIn(true);
                 console.log('Login successful');
                 // Redirect to the profile page after successful login
-                navigate('/profile');
+                navigate('/profile', {state: {email}});
             } else {
                 const data = await response.json();
                 setError(data.error);

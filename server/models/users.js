@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
     username: {
-        type: String, 
+        type: String,
         required: true,
     },
     password: {
@@ -29,7 +29,6 @@ const userSchema = new mongoose.Schema({
     gender: {
         type: String,
         required: true,
-        // Restrict possible values using enum
         enum: ['Male', 'Female', 'Non-binary']
     },
     bio: {
