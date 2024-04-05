@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import Profile from './Profile';
 
 const Login = () => {
@@ -31,8 +32,11 @@ const Login = () => {
             if (response.ok) {
                 setIsLoggedIn(true);
                 console.log('Login successful');
+                // Store email in session storage
+                console.log(email);
+                Cookies.set('userEmail', email);
                 // Redirect to the profile page after successful login
-                navigate('/profile', {state: {email}});
+                navigate(`/profile/${email}`);
             } else {
                 const data = await response.json();
                 setError(data.error);
@@ -42,6 +46,8 @@ const Login = () => {
             setError('An error occurred while logging in. Please try again.');
         }
     };
+
+    // Function to set email in session storage
 
     if (isLoggedIn) {
         return <Profile />;
@@ -77,3 +83,6 @@ const Login = () => {
 };
 
 export default Login;
+
+
+

@@ -95,7 +95,6 @@ const delete_post = async (req, res) => {
     }
 }
 
-
 module.exports = {create_post, get_all_post, get_post_by_id, update_post, delete_post};
 
 
