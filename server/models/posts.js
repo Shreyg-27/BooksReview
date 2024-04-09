@@ -10,6 +10,9 @@ const postSchema = new mongoose.Schema({
     username: {
         type: String,
     },
+    email: {
+        type: String,
+    },
     title: {
         type: String,
         required: true
@@ -26,6 +29,7 @@ const postSchema = new mongoose.Schema({
 postSchema.pre('save', async function(next) {
     const user = await User.findById(this.userId);
     this.username = user.username;
+    this.email = user.email;
     next();
 });
 

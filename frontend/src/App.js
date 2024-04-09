@@ -6,16 +6,18 @@ import Profile from "./components/Profile";
 import Signup from "./components/Signup";
 import Thankyou from "./components/Thankyou";
 import ReadMyArticles from "./components/ReadMyArticles";
-import CustomNavbar from "./components/Navbar"; // Import CustomNavbar
+import CustomNavbar from "./components/Navbar";
 import ReadAllPosts from "./components/ReadAllPosts";
+import CreateArticle from "./components/CreateArticle";
 
 function App() {
-  const [email, setEmail] = useState(""); // State to hold the email
+  const [email, setEmail] = useState(""); // State to hold the email  
 
   // Function to update the email state
   const updateEmail = (newEmail) => {
     setEmail(newEmail);
   };
+
 
   return (
     <Router>
@@ -29,6 +31,7 @@ function App() {
           <Route exact path="/thankyou" element={<Thankyou />} />
           <Route exact path="/myposts" element={<ReadMyArticles />} />
           <Route exact path="/allposts" element={<ReadAllPosts />} />
+          <Route exact path="/createarticle" element={<CreateArticle/>} />
         </Routes>
       </div>
     </Router>

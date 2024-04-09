@@ -4,13 +4,17 @@ const User = require("../models/users");
 // creating a post 
 const create_post = async(req, res) =>{
     const {title, article, tags} = req.body;
-    const userId = req.params.id; 
-    console.log(req.params.id);
+    const {email} = req.params; 
+    console.log(email);
     console.log(req.body);
     // const username = req.body.username; 
     try{
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
         const postAdded = await Post.create({
-            userId: userId,
+            userId: user._id,
             // username: username,
             title:title,
             article:article,
@@ -37,17 +41,27 @@ const get_all_post = async (req, res) => {
     }
 }
 
-// // get single user by id maybe 
-const get_post_by_id = async (req, res) => {
-    const userId = req.params.id; 
+const getPostsByEmail = async (req, res) => {
+    const email = req.params.email; // Extract email from URL parameters
     try {
-        const userPosts = await Post.find({ userId: userId });
-        res.status(200).json(userPosts);
+        // Find the user document based on the provided email
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        // Fetch posts associated with the user's id
+        const posts = await Post.find({ userId: user._id });
+
+        return res.status(200).json(posts);
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: error.message });
+        console.error('Error fetching posts by email:', error);
+        return res.status(500).json({ error: error.message });
     }
-}
+};
+
+
 
 //  // put/patch/update data 
 const update_post = async (req, res) => {
@@ -83,19 +97,35 @@ const update_post = async (req, res) => {
     }
 };
 
+
+
+
+
+
+
+
+
 // delete data
 const delete_post = async (req, res) => {
-    const { id } = req.params;
+    const { email } = req.params;
     try {
-        const singlePost = await Post.findByIdAndDelete({ _id: id });
-        res.status(200).json(singlePost);
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        const deletedPost = await Post.findOneAndDelete({ userId: user._id });
+        if (!deletedPost) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+        res.status(200).json({ message: 'Post deleted successfully' });
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: error.message });
     }
 }
 
-module.exports = {create_post, get_all_post, get_post_by_id, update_post, delete_post};
+module.exports = {create_post, get_all_post, getPostsByEmail, update_post, delete_post};
 
 
 
