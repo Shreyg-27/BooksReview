@@ -46,6 +46,12 @@ const ReadMyArticles = () => {
     navigate('/createarticle');
   };
 
+  const navigateToUpdatPost = () => {
+    navigate('/updatepost');
+  };
+
+
+
   const handleDelete = async (postId) => {
     try {
       // Make a DELETE request to delete the post with the given postId
@@ -80,10 +86,10 @@ const ReadMyArticles = () => {
             <p>Tags: {article.tags.join(', ')}</p>
             <p>Created At: {new Date(article.createdAt).toLocaleString()}</p>
             <button onClick={() => handleDelete(article._id)}>Delete</button>
-            <button>Update</button>
           </li>
         ))}
       </ul>
+      <button onClick={navigateToUpdatPost}>Update My Posts</button>
     </div>
   );
 };
