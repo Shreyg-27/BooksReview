@@ -9,6 +9,7 @@ import ReadMyArticles from "./components/ReadMyArticles";
 import CustomNavbar from "./components/Navbar";
 import ReadAllPosts from "./components/ReadAllPosts";
 import CreateArticle from "./components/CreateArticle";
+import Update from "./components/UpdateUserDetails";
 
 function App() {
   const [email, setEmail] = useState(""); // State to hold the email  
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/myposts" element={<ReadMyArticles />} />
           <Route exact path="/allposts" element={<ReadAllPosts />} />
           <Route exact path="/createarticle" element={<CreateArticle/>} />
+          <Route exact path = "/updateDetails" element={<Update />} />
         </Routes>
       </div>
     </Router>

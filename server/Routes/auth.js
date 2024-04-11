@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/signup', userSignUp);
 router.post('/login', UserLogin);
-router.patch('/:id', UserUpdate);
+router.patch('/:email', UserUpdate);
 router.get('/:email/profile', UserDetails);
 
 

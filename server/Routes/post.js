@@ -9,6 +9,6 @@ router.post('/:email', create_post);
 router.get('/allposts', get_all_post);
 router.get('/user/:email/posts', getPostsByEmail);
 router.put('/:id/updatepost', update_post);
-router.delete('/:email/delete', delete_post);
+router.delete('/:id/delete', delete_post);
 
 module.exports = router;

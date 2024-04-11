@@ -73,12 +73,17 @@ const UserLogin = async(req, res) =>{
     });
 };
 
-
 const UserUpdate = async (req, res) => {
-    const { id } = req.params;
-    const { name, email, gender, username, password, fav_authors, fav_books, fav_genres, bio } = req.body;
+    const { email } = req.params;
+    const { name, gender, username, password, fav_authors, fav_books, fav_genres, bio } = req.body;
 
     try {
+        // Find the user document based on the provided email
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
         let updatedData = req.body; // Clone the request body
 
         // Check if the password field is present and not empty
@@ -91,7 +96,7 @@ const UserUpdate = async (req, res) => {
         }
 
         // Find and update the user by ID
-        const updateUser = await User.findByIdAndUpdate(id, updatedData, {
+        const updateUser = await User.findByIdAndUpdate(user._id, updatedData, {
             new: true,
         });
 
@@ -101,6 +106,36 @@ const UserUpdate = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+
+
+// const UserUpdate = async (req, res) => {
+//     const { email } = req.params;
+//     const { name, gender, username, password, fav_authors, fav_books, fav_genres, bio } = req.body;
+
+//     try {
+//         let updatedData = req.body; // Clone the request body
+
+//         // Check if the password field is present and not empty
+//         if (password) {
+//             // Hash the password
+//             const salt = await bcrypt.genSalt(10);
+//             const hash = await bcrypt.hash(password, salt);
+//             // Set the hashed password in the updated data
+//             updatedData.password = hash;
+//         }
+
+//         // Find and update the user by ID
+//         const updateUser = await User.findByIdAndUpdate(id, updatedData, {
+//             new: true,
+//         });
+
+//         res.status(200).json(updateUser);
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ error: error.message });
+//     }
+// };
 
 
 // get details of a paticular user 

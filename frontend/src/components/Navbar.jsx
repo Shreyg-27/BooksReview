@@ -37,7 +37,7 @@ const CustomNavbar = () => {
             <Nav.Link href="/stats">Statistics</Nav.Link>
             <Nav.Link href="/news">News</Nav.Link>
             <NavDropdown title="Profile" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/createPost">Create Article</NavDropdown.Item>
+              <NavDropdown.Item href="/createarticle">Create Article</NavDropdown.Item>
               <NavDropdown.Item href="/myPosts">View my Articles</NavDropdown.Item>
               <NavDropdown.Item href="/updateDetails">Update My Details</NavDropdown.Item>
               <NavDropdown.Item href={`/profile/${email}`}>My Profile</NavDropdown.Item>
