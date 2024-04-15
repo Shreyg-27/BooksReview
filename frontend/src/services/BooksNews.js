@@ -1,7 +1,8 @@
 // const axios = require('axios');
 import axios, * as others from 'axios';
 
-const url = 'https://hapi-books.p.rapidapi.com/nominees/romance/2020';
+
+const url = `https://hapi-books.p.rapidapi.com/nominees/romance/2020`;
 const options = {
   method: 'GET',
   headers: {

@@ -12,6 +12,15 @@ import CreateArticle from "./components/CreateArticle";
 import Update from "./components/UpdateUserDetails";
 import UpdatePost from "./components/UpdatePost";
 import Books from "./components/BooksNews";
+import BooksData from "./components/Books";
+import Fantasy from "./components/Fantasy";
+import Romance from "./components/Romance";
+import Mystery from "./components/Mystery";
+import Fiction from "./components/Fiction";
+import ScienceFiction from "./components/Scifi";
+import Classics from "./components/Classics";
+import Adventure from "./components/Adventure";
+import Literature from "./components/Literature";
 
 function App() {
   const [email, setEmail] = useState(""); // State to hold the email  
@@ -38,6 +47,15 @@ function App() {
           <Route exact path = "/updateDetails" element={<Update />} />
           <Route exact path = "/updatepost" element={<UpdatePost />} />
           <Route exact path="/news" element={<Books />} />
+          <Route exact path = '/allbooks' element={<BooksData />} />
+          <Route exact path="/fantasy" element={<Fantasy />} />
+          <Route exact path="/romance" element={<Romance />} />
+          <Route exact path="/mystery" element={<Mystery />} />
+          <Route exact path="/fiction" element={<Fiction />} />
+          <Route exact path="/sciencefiction" element={<ScienceFiction />} />
+          <Route exact path="/classics" element={<Classics />} />
+          <Route exact path="/adventure" element={<Adventure />} />
+          <Route exact path="/literature" element={<Literature />} />
         </Routes>
       </div>
     </Router>
