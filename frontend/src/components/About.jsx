@@ -16,7 +16,7 @@ const About = () => {
     return (
         <div>
             <CustomNavbar onLogout={handleLogout} />
-            <h1>About Our Books Review App</h1>
+            <h1 className="text-3xl font-bold underline">About Our Books Review App</h1>
             <p>
                 Welcome to our Books Review App! This is a platform where you can discover and review books from various genres.
             </p>
