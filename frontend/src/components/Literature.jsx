@@ -46,7 +46,7 @@ const Literature = () => {
     return (
         <div>
             <CustomNavbar onLogout={handleLogout} />
-            <h1>Top 10 Literature Books</h1>
+            <h1>Top Literature Books</h1>
             {loading ? (
                 <p>Loading...</p>
             ) : (

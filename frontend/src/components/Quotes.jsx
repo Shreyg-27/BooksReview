@@ -4,36 +4,43 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-const Adventure = () => {
-    const [books, setBooks] = useState([]);
+const Quotes = () => {
+    const [quotes, setQuotes] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchBooks();
+        fetchQuotes();
     }, []);
 
-    const fetchBooks = async () => {
+    const fetchQuotes = async () => {
         const options = {
             method: 'GET',
-            url: 'https://books-api7.p.rapidapi.com/books/find/genres',
-            params: {
-                'genres[]': 'adventure'
-            },
+            url: 'https://get-quotes-api.p.rapidapi.com/quotes',
             headers: {
                 'X-RapidAPI-Key': '7f757d3ab0msha3f2bb3500b4c7fp18d194jsne28649b3488a',
-                'X-RapidAPI-Host': 'books-api7.p.rapidapi.com'
+                'X-RapidAPI-Host': 'get-quotes-api.p.rapidapi.com'
             }
         };
 
         try {
             const response = await axios.request(options);
-            setBooks(response.data);
+            console.log(response.data.Quotes);
+
+            // Get random 25 quotes
+            const randomQuotes = getRandomQuotes(response.data.Quotes, 25);
+            setQuotes(randomQuotes);
             setLoading(false);
         } catch (error) {
             console.error(error);
             setLoading(false);
         }
+    };
+
+    // Function to get random quotes from an array
+    const getRandomQuotes = (quotesArray, count) => {
+        const shuffled = quotesArray.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
     };
 
     const handleLogout = () => {
@@ -46,20 +53,17 @@ const Adventure = () => {
     return (
         <div>
             <CustomNavbar onLogout={handleLogout} />
-            <h1>Adventure Books! </h1>
+            <h1>Quotes to motivate you!</h1>
             {loading ? (
                 <p>Loading...</p>
             ) : (
                 <div>
-                    {books.slice(0, 11).map((book, index) => (
+                    {quotes.map((quote, index) => (
                         <div key={index}>
-                            <h2>{book.title}</h2>
-                            <p>Author: {book.author.first_name} {book.author.last_name}</p>
-                            <p>Pages: {book.pages}</p>
-                            <p>Rating: {book.rating}</p>
-                            <p>Plot: {book.plot}</p>
-                            <img src={book.cover} alt={book.title} style={{ maxWidth: '200px' }} />
-                            <a href={book.url} target="_blank" rel="noopener noreferrer">More Info</a>
+                            <h2>{quote.quote}</h2>
+                            <p>Author: {quote.author}</p>
+                            <p>Category: {quote.category}</p>
+                            <p>Description: {quote.description}</p>
                         </div>
                     ))}
                 </div>
@@ -68,4 +72,4 @@ const Adventure = () => {
     );
 };
 
-export default Adventure;
+export default Quotes;

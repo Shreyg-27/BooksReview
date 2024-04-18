@@ -21,6 +21,9 @@ import ScienceFiction from "./components/Scifi";
 import Classics from "./components/Classics";
 import Adventure from "./components/Adventure";
 import Literature from "./components/Literature";
+import Quotes from "./components/Quotes";
+import Quiz from "./components/Quiz";
+import About from "./components/About";
 
 function App() {
   const [email, setEmail] = useState(""); // State to hold the email  
@@ -56,6 +59,9 @@ function App() {
           <Route exact path="/classics" element={<Classics />} />
           <Route exact path="/adventure" element={<Adventure />} />
           <Route exact path="/literature" element={<Literature />} />
+          <Route exact path="/quotes" element={<Quotes />} />
+          <Route exact path="/quiz" element={<Quiz />} />
+          <Route exact path="/home" element={<About />} />
         </Routes>
       </div>
     </Router>

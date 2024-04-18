@@ -46,7 +46,7 @@ const Fiction = () => {
     return (
         <div>
             <CustomNavbar onLogout={handleLogout} />
-            <h1>Top Mystery Books</h1>
+            <h1>Top Fiction Books</h1>
             {loading ? (
                 <p>Loading...</p>
             ) : (

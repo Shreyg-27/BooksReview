@@ -28,14 +28,14 @@ const CustomNavbar = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">BooksReview</Navbar.Brand>
+        <Navbar.Brand href="/home">BooksReview</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/allposts">Read Articles</Nav.Link>
             <Nav.Link href="/allbooks">Books</Nav.Link>
-            <Nav.Link href="/stats">Statistics</Nav.Link>
-            <Nav.Link href="/news">News</Nav.Link>
+            <Nav.Link href="/quiz">QuestionsFun</Nav.Link>
+            <Nav.Link href="/quotes">Quotes</Nav.Link>
             <NavDropdown title="Profile" id="basic-nav-dropdown">
               <NavDropdown.Item href="/createarticle">Create Article</NavDropdown.Item>
               <NavDropdown.Item href="/myPosts">View my Articles</NavDropdown.Item>
