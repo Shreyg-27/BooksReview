@@ -17,6 +17,26 @@ const Quiz = () => {
         fetchDogFact();
     }, []);
 
+    const fetchQuiz = async () => {
+        const options = {
+            method: 'GET',
+            url: 'https://current-affairs-of-india.p.rapidapi.com/today-quiz',
+            headers: {
+                'X-RapidAPI-Key': '7f757d3ab0msha3f2bb3500b4c7fp18d194jsne28649b3488a',
+                'X-RapidAPI-Host': 'current-affairs-of-india.p.rapidapi.com'
+            }
+        };
+
+        try {
+            const response = await axios.request(options);
+            setQuiz(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error(error);
+            setLoading(false);
+        }
+    };
+
     const fetchCatFact = async () => {
         const options = {
             method: 'GET',
@@ -29,8 +49,6 @@ const Quiz = () => {
 
         try {
             const response = await axios.request(options);
-            console.log(response.data.fact);
-
             setCatFact(response.data.fact);
             setLoading(false);
         } catch (error) {
@@ -44,38 +62,13 @@ const Quiz = () => {
             method: 'GET',
             url: 'https://random-dog-facts.p.rapidapi.com/',
             headers: {
-              'X-RapidAPI-Key': '7f757d3ab0msha3f2bb3500b4c7fp18d194jsne28649b3488a',
-              'X-RapidAPI-Host': 'random-dog-facts.p.rapidapi.com'
-            }
-          };
-        try {
-            const response = await axios.request(options);
-            console.log(response.data.fact);
-
-            setDogFact(response.data.fact);
-            setLoading(false);
-        } catch (error) {
-            console.error(error);
-            setLoading(false);
-        }
-    };
-
-
-    const fetchQuiz = async () => {
-        const options = {
-            method: 'GET',
-            url: 'https://current-affairs-of-india.p.rapidapi.com/today-quiz',
-            headers: {
                 'X-RapidAPI-Key': '7f757d3ab0msha3f2bb3500b4c7fp18d194jsne28649b3488a',
-                'X-RapidAPI-Host': 'current-affairs-of-india.p.rapidapi.com'
+                'X-RapidAPI-Host': 'random-dog-facts.p.rapidapi.com'
             }
         };
-
         try {
             const response = await axios.request(options);
-            console.log(response.data);
-
-            setQuiz(response.data);
+            setDogFact(response.data.fact);
             setLoading(false);
         } catch (error) {
             console.error(error);
@@ -91,30 +84,23 @@ const Quiz = () => {
     };
 
     return (
-        <div>
+        <div className="bg-gray-100">
             <CustomNavbar onLogout={handleLogout} />
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <div>
-                    <h1>Questions to answer</h1>
-                    {quiz.map((ques, index) => (
-                        <div key={ques.id}>
-                            <p>{ques.question}</p>
+            <div className="container mx-auto px-4 py-8">
+                {loading ? (
+                    <p>Loading...</p>
+                ) : (
+                    <div>
+                        <h1 className="text-3xl font-bold text-center mb-8">Questions to Keep You Updated with Current Affairs</h1>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {quiz.map((ques, index) => (
+                                <div key={ques.id} className="bg-white rounded-lg shadow-md p-4">
+                                    <p className="text-lg">{ques.question}</p>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            )}
-
-            {/* cat fact */}
-            <div>
-                <h1>Random Cat Fact!</h1>
-                <p>{catFact}</p>
-            </div>
-            {/* dog fact */}
-            <div>
-                <h1>Random Dog Fact!</h1>
-                <p>{dogFact}</p>
+                    </div>
+                )}
             </div>
         </div>
     );

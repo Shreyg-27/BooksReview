@@ -16,6 +16,7 @@ const Home = () => {
     }
 
     return (
+        <div className='bg-gray-100'>
         <div className="flex flex-col items-center justify-center min-h-screen p-4">
             <div className="text-center mb-8">
                 <h1 className="text-4xl font-bold mb-2">Welcome to BooksReview</h1>
@@ -65,6 +66,7 @@ const Home = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
             </Routes>
+        </div>
         </div>
     );
 };

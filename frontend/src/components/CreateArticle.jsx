@@ -56,38 +56,48 @@ const CreateArticle = () => {
     return (
         <div>
             <CustomNavbar onLogout={handleLogout}/>
-            <h2>Create Article</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title:</label>
-                    <input
-                        type="text"
-                        id="title"
-                        value={title}
-                        onChange={(event) => setTitle(event.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="article">Article Content:</label>
-                    <textarea
-                        id="article"
-                        value={article}
-                        onChange={(event) => setArticle(event.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="tags">Tags (comma-separated):</label>
-                    <input
-                        type="text"
-                        id="tags"
-                        value={tags}
-                        onChange={(event) => setTags(event.target.value)}
-                    />
-                </div>
-                <button type="submit">Submit</button>
-            </form>
+            <div className="bg-gray-100 max-w-md mx-auto mt-16 px-6">
+                <h2 className="text-3xl font-bold mb-6">Create Article</h2>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                        <label htmlFor="title" className="block text-sm font-medium leading-5 text-gray-700">Title:</label>
+                        <input
+                            type="text"
+                            id="title"
+                            value={title}
+                            onChange={(event) => setTitle(event.target.value)}
+                            required
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-400 focus:ring focus:ring-indigo-400 focus:ring-opacity-50"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="article" className="block text-sm font-medium leading-5 text-gray-700">Article Content:</label>
+                        <textarea
+                            id="article"
+                            value={article}
+                            onChange={(event) => setArticle(event.target.value)}
+                            required
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-400 focus:ring focus:ring-indigo-400 focus:ring-opacity-50"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="tags" className="block text-sm font-medium leading-5 text-gray-700">Tags (comma-separated):</label>
+                        <input
+                            type="text"
+                            id="tags"
+                            value={tags}
+                            onChange={(event) => setTags(event.target.value)}
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-400 focus:ring focus:ring-indigo-400 focus:ring-opacity-50"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                        Submit
+                    </button>
+                </form>
+            </div>
         </div>
     );
 

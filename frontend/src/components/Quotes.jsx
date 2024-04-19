@@ -25,8 +25,6 @@ const Quotes = () => {
 
         try {
             const response = await axios.request(options);
-            console.log(response.data.Quotes);
-
             // Get random 25 quotes
             const randomQuotes = getRandomQuotes(response.data.Quotes, 25);
             setQuotes(randomQuotes);
@@ -51,23 +49,25 @@ const Quotes = () => {
     };
 
     return (
-        <div>
+        <div className="bg-gray-100">
             <CustomNavbar onLogout={handleLogout} />
-            <h1>Quotes to motivate you!</h1>
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <div>
-                    {quotes.map((quote, index) => (
-                        <div key={index}>
-                            <h2>{quote.quote}</h2>
-                            <p>Author: {quote.author}</p>
-                            <p>Category: {quote.category}</p>
-                            <p>Description: {quote.description}</p>
-                        </div>
-                    ))}
-                </div>
-            )}
+            <div className="container mx-auto px-4 py-8">
+                <h1 className="text-3xl font-bold text-center mb-8">Quotes to Motivate You!</h1>
+                {loading ? (
+                    <p>Loading...</p>
+                ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        {quotes.map((quote, index) => (
+                            <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                                <h2 className="text-xl font-bold mb-2">{quote.quote}</h2>
+                                <p className="text-gray-600"><span className="font-semibold">Author:</span> {quote.author}</p>
+                                <p className="text-gray-600"><span className="font-semibold">Category:</span> {quote.category}</p>
+                                <p className="text-gray-600"><span className="font-semibold">Description:</span>{quote.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

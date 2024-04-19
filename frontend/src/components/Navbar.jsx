@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { FiMenu } from 'react-icons/fi';
 
 const CustomNavbar = () => {
   const [email, setEmail] = useState('');
@@ -26,23 +27,23 @@ const CustomNavbar = () => {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="/home">BooksReview</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar expand="lg" className="bg-blue-800 py-6 px-8">
+      <Container className="w-screen flex justify-between">
+        <Navbar.Brand href="/home" className="text-white font-bold text-3xl">BooksReview</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-white" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/allposts">Read Articles</Nav.Link>
-            <Nav.Link href="/allbooks">Books</Nav.Link>
-            <Nav.Link href="/quiz">QuestionsFun</Nav.Link>
-            <Nav.Link href="/quotes">Quotes</Nav.Link>
-            <NavDropdown title="Profile" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/createarticle">Create Article</NavDropdown.Item>
-              <NavDropdown.Item href="/myPosts">View my Articles</NavDropdown.Item>
-              <NavDropdown.Item href="/updateDetails">Update My Details</NavDropdown.Item>
-              <NavDropdown.Item href={`/profile/${email}`}>My Profile</NavDropdown.Item>
+            <Nav.Link href="/allposts" className="text-white font-bold text-2xl mr-16 ml-16">Read Articles</Nav.Link>
+            <Nav.Link href="/allbooks" className="text-white font-bold text-2xl mr-16">Books</Nav.Link>
+            <Nav.Link href="/quiz" className="text-white font-bold text-2xl mr-16">QuestionsFun</Nav.Link>
+            <Nav.Link href="/quotes" className="text-white font-bold text-2xl mr-16">Quotes</Nav.Link>
+            <NavDropdown title="Profile" id="basic-nav-dropdown" className="text-white font-bold text-2xl">
+              <NavDropdown.Item href="/createarticle" className="text-gray-800">Create Article</NavDropdown.Item>
+              <NavDropdown.Item href="/myPosts" className="text-gray-800">View my Articles</NavDropdown.Item>
+              <NavDropdown.Item href="/updateDetails" className="text-gray-800">Update My Details</NavDropdown.Item>
+              <NavDropdown.Item href={`/profile/${email}`} className="text-gray-800">My Profile</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item> {/* Logout button */}
+              <NavDropdown.Item onClick={handleLogout} className="text-gray-800">Logout</NavDropdown.Item> {/* Logout button */}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
@@ -52,4 +53,3 @@ const CustomNavbar = () => {
 };
 
 export default CustomNavbar;
-

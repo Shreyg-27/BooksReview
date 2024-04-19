@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {
-BrowserRouter as Router, useNavigate,
-Switch,
-Route,
-useParams,
-} from "react-router-dom";
 import Cookies from 'js-cookie';
 import CustomNavbar from './Navbar';
-
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-    let {email} = useParams();
-    const navigate = useNavigate();
-
-    console.log("My email" , email); 
-
     // Define state variables for user profile data
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
@@ -24,17 +13,17 @@ const Profile = () => {
     const [favGenres, setFavGenres] = useState([]);
     const [favBooks, setFavBooks] = useState([]);
     const [favAuthors, setFavAuthors] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // Check if email is available
-        console.log(email);
-        const emailFromCookie = Cookies.get('userEmail');
-        if (emailFromCookie) {
+        // Retrieve the user's email from the cookie
+        const userEmail = Cookies.get('userEmail');
+        if (userEmail) {
             // Example fetch request to get user profile data from backend
             const fetchUserProfileData = async () => {
                 try {
                     // Make a fetch request to your backend API to get user profile data
-                    const response = await fetch(`http://localhost:5000/${emailFromCookie}/profile`, {
+                    const response = await fetch(`http://localhost:5000/${userEmail}/profile`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -49,7 +38,7 @@ const Profile = () => {
                         // Update state variables with user profile data
                         setName(userData.name);
                         setUsername(userData.username);
-                        setUserEmail(userData.email); // Renamed state variable
+                        setUserEmail(userData.email);
                         setGender(userData.gender);
                         setBio(userData.bio);
                         setFavGenres(userData.fav_genres);
@@ -71,39 +60,59 @@ const Profile = () => {
             // Redirect to login page if email is not available in cookie
             window.location.href = '/login';
         }
-    }, []); // Dependency array includes email
-
-    // Render the profile component with user profile data
-    console.log(email);
+    }, []); // Empty dependency array ensures useEffect runs only once
     const handleLogout = () => {
         // Remove the userEmail cookie
         Cookies.remove('userEmail');
         // Redirect to the login page
         navigate("/");
       };
-    
+
     return (
-        <div>
+        <div className='bg-gray-100'>
             <CustomNavbar onLogout={handleLogout}/>
-            <h2>Welcome to Your Profile</h2>
-            <p>This is your profile page. You can view and update your profile details here.</p>
-            <ul>
-                <li>Name: {name}</li>
-                <li>Username: {username}</li>
-                <li>Email: {userEmail}</li> 
-                <li>Gender: {gender}</li>
-                <li>Bio: {bio}</li>
-                <li>Favorite Genres: {favGenres.join(', ')}</li>
-                <li>Favorite Books: {favBooks.join(', ')}</li>
-                <li>Favorite Authors: {favAuthors.join(', ')}</li>
-            </ul>
+            <div className="flex justify-center mt-8">
+                <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+                    <h2 className="text-lg font-semibold mb-4">Your Profile Information</h2>
+                    <dl className="divide-y divide-gray-200">
+                        <div className="py-3">
+                            <dt className="text-sm font-medium leading-5 text-gray-500">Name</dt>
+                            <dd className="mt-1 text-sm leading-5 text-gray-900">{name}</dd>
+                        </div>
+                        <div className="py-3">
+                            <dt className="text-sm font-medium leading-5 text-gray-500">Username</dt>
+                            <dd className="mt-1 text-sm leading-5 text-gray-900">{username}</dd>
+                        </div>
+                        <div className="py-3">
+                            <dt className="text-sm font-medium leading-5 text-gray-500">Email Address</dt>
+                            <dd className="mt-1 text-sm leading-5 text-gray-900">{userEmail}</dd>
+                        </div>
+                        <div className="py-3">
+                            <dt className="text-sm font-medium leading-5 text-gray-500">Gender</dt>
+                            <dd className="mt-1 text-sm leading-5 text-gray-900">{gender}</dd>
+                        </div>
+                        <div className="py-3">
+                            <dt className="text-sm font-medium leading-5 text-gray-500">Bio</dt>
+                            <dd className="mt-1 text-sm leading-5 text-gray-900">{bio}</dd>
+                        </div>
+                        <div className="py-3">
+                            <dt className="text-sm font-medium leading-5 text-gray-500">Favorite Genres</dt>
+                            <dd className="mt-1 text-sm leading-5 text-gray-900">{favGenres.join(', ')}</dd>
+                        </div>
+                        <div className="py-3">
+                            <dt className="text-sm font-medium leading-5 text-gray-500">Favorite Books</dt>
+                            <dd className="mt-1 text-sm leading-5 text-gray-900">{favBooks.join(', ')}</dd>
+                        </div>
+                        <div className="py-3">
+                            <dt className="text-sm font-medium leading-5 text-gray-500">Favorite Authors</dt>
+                            <dd className="mt-1 text-sm leading-5 text-gray-900">{favAuthors.join(', ')}</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
         </div>
+
     );
 };
 
 export default Profile;
-
-
-
-
-

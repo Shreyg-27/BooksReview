@@ -44,22 +44,24 @@ const Literature = () => {
     };
 
     return (
-        <div>
+        <div className="bg-gray-100">
             <CustomNavbar onLogout={handleLogout} />
-            <h1>Top Literature Books</h1>
+            <h1 className="text-3xl font-bold text-center mt-8 mb-4">Literature Books to Read</h1>
             {loading ? (
                 <p>Loading...</p>
             ) : (
                 <div>
                     {books.slice(0, 11).map((book, index) => (
-                        <div key={index}>
-                            <h2>{book.title}</h2>
-                            <p>Author: {book.author.first_name} {book.author.last_name}</p>
-                            <p>Pages: {book.pages}</p>
-                            <p>Rating: {book.rating}</p>
-                            <p>Plot: {book.plot}</p>
-                            <img src={book.cover} alt={book.title} style={{ maxWidth: '200px' }} />
-                            <a href={book.url} target="_blank" rel="noopener noreferrer">More Info</a>
+                        <div key={index} className="bg-white rounded-lg shadow-md p-4 mb-4 flex mx-auto" style={{ maxWidth: '1000px' }}>
+                            <div className="flex-1">
+                                <h2 className="text-2xl font-semibold mb-2">{book.title}</h2>
+                                <p className="text-gray-700 mb-2"><span className="font-semibold">Author:</span> {book.author.first_name} {book.author.last_name}</p>
+                                <p className="text-gray-700 mb-2"><span className="font-semibold">Pages:</span> {book.pages}</p>
+                                <p className="text-gray-700 mb-2"><span className="font-semibold">Rating: </span>{book.rating}</p>
+                                <p className="text-gray-700 mb-2"><span className="font-semibold">Plot: </span> {book.plot}</p>
+                                <a href={book.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">More Info</a>
+                            </div>
+                            <img src={book.cover} alt={book.title} className="max-w-xs h-auto mb-2 ml-4" style={{ maxWidth: '200px' }} />
                         </div>
                     ))}
                 </div>
