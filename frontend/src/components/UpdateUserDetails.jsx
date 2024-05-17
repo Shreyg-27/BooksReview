@@ -38,7 +38,7 @@ const Update = () => {
     // Function to fetch user data from backend
     const getSingleUser = async (userEmail) => {
         try {
-            const response = await fetch(`http://localhost:5000/${userEmail}/profile`);
+            const response = await fetch(`https://booksreview-58y6.onrender.com/${userEmail}/profile`);
             console.log(response);
             const result = await response.json();
             if (!response.ok) {
@@ -64,7 +64,7 @@ const Update = () => {
         const updatedUser = { name, username, password, gender, bio, fav_genres: favGenres, fav_books: favBooks, fav_authors: favAuthors };
 
         try {
-            const response = await fetch(`http://localhost:5000/${userEmail}`, {
+            const response = await fetch(`https://booksreview-58y6.onrender.com/${userEmail}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

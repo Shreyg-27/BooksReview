@@ -10,7 +10,7 @@ const ReadAllPosts = () => {
     useEffect(() => {
         const fetchAllPosts = async () => {
             try {
-                const response = await fetch('http://localhost:5000/allposts');
+                const response = await fetch('https://booksreview-58y6.onrender.com/allposts');
                 if (response.ok) {
                     const data = await response.json();
                     setPosts(data);

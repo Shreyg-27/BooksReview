@@ -27,7 +27,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       // Send form data to backend for signup
-      const response = await fetch('http://localhost:5000/signup', {
+      const response = await fetch('https://booksreview-58y6.onrender.com/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

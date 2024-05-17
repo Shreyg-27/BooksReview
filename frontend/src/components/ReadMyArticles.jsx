@@ -19,7 +19,7 @@ const ReadMyArticles = () => {
           return;
         }
 
-        const response = await fetch(`http://localhost:5000/user/${userEmail}/posts`);
+        const response = await fetch(`https://booksreview-58y6.onrender.com/user/${userEmail}/posts`);
         if (response.ok) {
           const data = await response.json();
           console.log(data);
@@ -53,7 +53,7 @@ const ReadMyArticles = () => {
   const handleDelete = async (postId) => {
     try {
       // Make a DELETE request to delete the post with the given postId
-      const response = await fetch(`http://localhost:5000/${postId}/delete`, {
+      const response = await fetch(`https://booksreview-58y6.onrender.com/${postId}/delete`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

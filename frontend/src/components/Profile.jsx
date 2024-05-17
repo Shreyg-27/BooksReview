@@ -23,7 +23,7 @@ const Profile = () => {
             const fetchUserProfileData = async () => {
                 try {
                     // Make a fetch request to your backend API to get user profile data
-                    const response = await fetch(`http://localhost:5000/${userEmail}/profile`, {
+                    const response = await fetch(`https://booksreview-58y6.onrender.com/${userEmail}/profile`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',

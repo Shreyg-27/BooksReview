@@ -21,7 +21,7 @@ const UpdatePost = () => {
                     navigate("/login");
                     return;
                 }
-                const response = await fetch(`http://localhost:5000/user/${userEmail}/posts`);
+                const response = await fetch(`https://booksreview-58y6.onrender.com/user/${userEmail}/posts`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch user's posts");
                 }
@@ -61,7 +61,7 @@ const UpdatePost = () => {
                 tags: tags.split(",").map((tag) => tag.trim()),
             };
             console.log(selectedPost._id);
-            const response = await fetch(`http://localhost:5000/${selectedPost._id}/updatepost`, {
+            const response = await fetch(`https://booksreview-58y6.onrender.com/${selectedPost._id}/updatepost`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
